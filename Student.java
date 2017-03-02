@@ -12,7 +12,7 @@ public student()
 {
   
 }
-  
+
 public String getID()
 {
   return id;
@@ -40,7 +40,15 @@ public int gettotalnonSchoolRelated()
 public double getPercentSR()
 {
   return percentSR();
-  
-}  
-    
+}
+public void addQuery(String s1)
+{
+    this.Queries.add(s1);
+}
+public static void main(String [] args){
+   Student o1= new HelloWorld();
+   o1.addQuery("helloworl");
+   o1.addQuery("i got it");
+   System.out.println(o1.getQueries());
+}
 }
