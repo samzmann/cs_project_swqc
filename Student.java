@@ -44,6 +44,9 @@ public double getPercentSR()
 public void addQuery(String s1)
 {
     this.Queries.add(s1);
+}  
+public void toString()
+{
 }
 public static void main(String [] args){
    Student o1= new HelloWorld();
