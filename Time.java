@@ -13,8 +13,31 @@ Query()
 
 public double getQid()
 {
-  this.
+  return queryid;
 }
-  
+ 
+public String getUser()
+{
+ return user;
+}
 
+ public String getTerm()
+ {
+  return term;
+ }
+  
+ public boolean getSchoolRelated()
+ {
+  return schoolRelated;
+ }
+ 
+publc int getCount()
+{
+ return count;
+}
+
+public String getDomain()
+{
+ return domain;
+}
 }
