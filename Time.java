@@ -11,7 +11,7 @@ Query()
 {
 }
 
-public double getQid()
+ public double getQid()
 {
   return queryid;
 }
@@ -26,11 +26,20 @@ public String getUser()
   return term;
  }
   
- public boolean getSchoolRelated()
+ public boolean setSR(boolean name) 
+ {
+       this.name = name;
+    }
+ 
+public boolean getSchoolRelated()
  {
   return schoolRelated;
  }
- 
+
+ public int setCount(int count)
+ {
+       this.count = count;
+ }
 publc int getCount()
 {
  return count;
@@ -40,4 +49,6 @@ public String getDomain()
 {
  return domain;
 }
+ 
+ 
 }
