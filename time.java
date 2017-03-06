@@ -21,7 +21,7 @@ public String getUser()
  return user;
 }
 
- public String getTerm()
+ public String getTerm()time
  {
   return term;
  }
