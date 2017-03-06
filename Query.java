@@ -1,4 +1,4 @@
-public class query {
+public class Query {
 
  private double queryid;
  private String user;
