@@ -1,4 +1,4 @@
-public class time {
+public class Time {
 
  private int Hours;  
  private int Minutes;
