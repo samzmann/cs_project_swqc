@@ -1,4 +1,4 @@
-public class Time {
+public class query {
 
  private double queryid;
  private String user;
