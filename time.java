@@ -1,4 +1,4 @@
-public class Query {
+public class time {
 
  private int Hours;  
  private int Minutes;
