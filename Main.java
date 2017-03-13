@@ -60,7 +60,7 @@ try{
 String driver = "com.mysql.jdbc.Driver";
 String url = "jdbc:mysql://localhost:3306/us";// create a new database with name "us"
 String username = "root";
-String password = "Mba@2016";
+String password = "****";
 Class.forName(driver); 
 Connection conn = DriverManager.getConnection(url+"?useSSL=false",username,password);
 System.out.println("Connected");
