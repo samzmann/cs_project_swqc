@@ -58,7 +58,7 @@ get();
 public static Connection getConnection() throws Exception{
 try{
 String driver = "com.mysql.jdbc.Driver";
-String url = "jdbc:mysql://localhost:3306/us";
+String url = "jdbc:mysql://localhost:3306/us";// create a new database with name "us"
 String username = "root";
 String password = "Mba@2016";
 Class.forName(driver); 
