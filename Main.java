@@ -49,7 +49,7 @@ get();
 	 try{
 		 Connection con = getConnection();
 		 PreparedStatement create =con.prepareStatement("create table IF NOT EXISTS student(Rollno int(6), NAME varchar(25)); ");
-		 create.executeUpdate();
+		 create.executeUpdate();     // the above statment creates new table, with column names" Rollno", "NAME"
 		 	 }catch(Exception e){System.out.println(e);}
 	     finally{
 	    	 System.out.println("function complete.");
