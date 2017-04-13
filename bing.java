@@ -40,9 +40,8 @@ public class Bing {
 		    ArrayList<String> queries = new ArrayList<String>();
 		    int count=1;
 		   try{
-			  // Connection con = getConnection();
-			
-			   String statement1="Select Column1 from query where status='0';";
+			  		
+			   String statement1="Select Column1 from query where status='0';";// selects all queries which are not enriched( status is 0)
 			   queries=get(statement1,"Column1");
 			 
 			  System.out.println(queries);
@@ -69,7 +68,7 @@ public class Bing {
 					JSONObject result = resultArray.getJSONObject(i);
 					resultName.add(result.getString("name"));
 					resultSnippet.add(result.getString("snippet"));
-					count1++;
+					count1++;// increments number of results are add added for enrichment
 				}
 			} catch (JSONException e) {
 				//Debug.println("Error in Json reading");
@@ -84,20 +83,20 @@ public class Bing {
 			    out.println(resultSnippet.get(i));
 			
 			    String statement ="UPDATE query SET enriched=concat(ifnull(enriched,' '),' ',?) where Column1=?";
-				post(statement,resultName.get(i)+" "+resultSnippet.get(i)+" ",query);
+				post(statement,resultName.get(i)+" "+resultSnippet.get(i)+" ",query);//updates enriched column
 			}
 			
 			out.println();
 			count++;
-			if( count1>1)
+			if( count1>1)// when there is loss of internet connection or some problem count1=1,to make query enrich again we use this condition to change the status from 0 to 1
 				{						
 				 String statement="update query set status=? where Column1=?";
-				 post(statement,"1",query);
+				 post(statement,"1",query); // if the query is enriched completely ,status is 1
 				}
 			else
 			{  
 				String statement="update query set enriched=null ,status=? where Column1=?";
-				post(statement,"0",query);
+				post(statement,"0",query);// if query is not enriched status is 0//                    
 				
 			}
 		}
@@ -142,49 +141,4 @@ public class Bing {
 		return "{}";
 	}
 
-public static Connection getConnection() throws Exception{
-	try{
-	String driver = "com.mysql.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/student";// connecting to a database "student"
-	String username = "root";
-	String password = "Mba@2016";
-	Class.forName(driver); 
-	Connection conn = DriverManager.getConnection(url+"?useSSL=false",username,password);
-	//System.out.println("Connected");
-	return conn;
-	} catch(Exception e){System.out.println(e);
-	} 
-	return null;
-	}
-
-public static ArrayList<String> get( String query, String Column) throws Exception
-{
-	 try{
-		 
-		 Connection con=getConnection();
-		 PreparedStatement statement= con.prepareStatement(query);
-		 ResultSet result=statement.executeQuery();
-		 ArrayList<String> array= new ArrayList<String>();
-		 while(result.next())
-	    	{
-	    	 array.add(result.getString(Column));
-	    	}
-		  return array;
-		 
-	 }
-	 catch(Exception e){System.out.println(e);
-	 }
-return null;
-}
-public static void post(String statement,String a1,String a2) throws Exception{
-	 try{
-		 Connection con=getConnection();
-		 PreparedStatement posted=con.prepareStatement(statement);
-			posted.setString(1,a1);
-			posted.setString(2,a2);			
-			posted.executeUpdate();
-		 }catch(Exception e){System.out.println(e);}
-	      finally { 
-		 		}
-}
 }
