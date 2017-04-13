@@ -34,26 +34,26 @@ public class Bing {
 	public void searchResults() throws FileNotFoundException {
 		
 			
-			//Scanner in = new Scanner(new File("randomSamplingOfQueries.txt"));
+			
 		    PrintStream out = new PrintStream(new File("enrichedQueries.txt"));
 		    ArrayList<String> queries = new ArrayList<String>();
 		    int count=1;
 		   try{
 			   Connection con = getConnection();
-			   PreparedStatement statement  = con.prepareStatement("Select queries from query;");
+			   PreparedStatement statement  = con.prepareStatement("Select Column1 from query;");
 			   ResultSet result1  = statement.executeQuery();
 			    while(result1.next())
 			    	{
-			    	 queries.add(result1.getString("queries"));
+			    	 queries.add(result1.getString("Column1"));
 			    	}
 			  System.out.println(queries);
 			   
-			//   if(in.hasNextLine()){
+			
 			  if(queries.size()>0){
-		      // while(in.hasNextLine())
-			    	while(queries.size()>0)
+		      
+			    	while(queries.size()>=count)
 		    	   {
-			//String query = in.nextLine();
+			
 			String query = queries.get(count-1);
 			out.println("\n"+count);
 			System.out.println(count + ". " + query);
@@ -61,36 +61,61 @@ public class Bing {
 			String results = search(query, offset, limit);
 			ArrayList<String> resultName = new ArrayList<>();
 			ArrayList<String> resultSnippet = new ArrayList<>();      
-
+			int count1=1;
 			try {
 				JSONObject searchResponseJson = new JSONObject(results);
 				JSONArray resultArray = searchResponseJson.getJSONObject("webPages").getJSONArray("value");
+				
 				for (int i = 0; i < resultArray.length(); i++) {
 					JSONObject result = resultArray.getJSONObject(i);
 					resultName.add(result.getString("name"));
-					resultSnippet.add(result.getString("snippet"));                
+					resultSnippet.add(result.getString("snippet"));
+					System.out.print(count1+",");
+					count1++;
 				}
 			} catch (JSONException e) {
 				//Debug.println("Error in Json reading");
 				out.println("xxxxxxxxxxxxxxxx");
 				out.println("xxxxxxxxxxxxxxxx");
+							
 			}
+			
 			for (int i = 0; i < resultName.size(); i++)
 			{
 				out.println(resultName.get(i));
-			out.println(resultSnippet.get(i));
+			    out.println(resultSnippet.get(i));
 				
-			    String query1 ="UPDATE query SET enriched=concat(ifnull(enriched,' '),' ',?,' ',?) where queries=?";
+			    String query1 ="UPDATE query SET enriched=concat(ifnull(enriched,' '),' ',?,' ',?) where Column1=?";
 				PreparedStatement posted=con.prepareStatement(query1);
 				posted.setString(1,resultName.get(i)+"\n");
 				posted.setString(2,resultSnippet.get(i)+"\n");
 				posted.setString(3,query);
 				posted.executeUpdate();
+				
 			}
+			
+			
 			out.println();
 			count++;
+			if( count1>=4)
+				{
+				String query2="update query set status=1 where Column1=?";
+				PreparedStatement posted1=con.prepareStatement(query2);
+				posted1.setString(1,query);
+				posted1.executeUpdate();
+				}
+			else
+			{
+				String query2="update query set enriched=null ,set status=0 where Column1=?";
+				PreparedStatement posted1=con.prepareStatement(query2);
+				posted1.setString(1, query);
+				posted1.executeUpdate();
+				
+			}
 		}
-		//in.close();
+			    	
+		
+	
 		System.out.println("\nDone enriching!\n");
 		}
 		else 
@@ -102,7 +127,7 @@ public class Bing {
 	public static Connection getConnection() throws Exception{
 		try{
 		String driver = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/student";// create a new database with name "us"
+		String url = "jdbc:mysql://localhost:3306/student";// connecting to a database "student"
 		String username = "root";
 		String password = "Mba@2016";
 		Class.forName(driver); 
@@ -113,6 +138,7 @@ public class Bing {
 		} 
 		return null;
 		}
+	
 	
 
 	private String search(String keyString, int offset, int limit) {
