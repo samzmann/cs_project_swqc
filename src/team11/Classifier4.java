@@ -18,7 +18,7 @@ public class Classifier4 {
 	}	
 	public static void classify(){
 		Connection conn = null;
-		Scanner inEnrichedQuery,inRandomQueries,inNonschoolCorpus;		
+		//Scanner inEnrichedQuery,inRandomQueries,inNonschoolCorpus;		
 		try {
 			inEnrichedQuery = new Scanner(new File("enrichedQueries.txt"));
 			inRandomQueries = new Scanner(new File("randomSamplingOfQueries.txt"));

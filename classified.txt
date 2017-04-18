@@ -1,100 +1,100 @@
-mom quotes ^  celebrities(1) funny(2) ^ washington(1) ^3^Non School
-virginia tech football  ^  tweets(1) basketball(1) mlb(1) nfl(1) baseball(1) game(5) sports(1) football(1) sport(1) ^ history(1) university(1) statistics(1) ^13^Non School
-paintings ^  buy(1) ^ ^1^Non School
-overwatch memes ^  porn(1) funny(2) facebook(1) tv(1) game(5) ^ ^10^Non School
-rashad jennings injury ^  play(1) profile(1) nfl(1) game(5) sports(1) football(1) ^ history(1) ^10^Non School
-the carrie diaries sebastian ^  city(1) sex(1) tv(1) imdb(1) town(1) comedy(1) amazon(1) party(1) youtube(1) ^ ^9^Non School
-beets ^  food(1) ^ ^1^Non School
-most expensive fake painting ^  ^ history(1) museum(1) postwar(1) ^3^School
-mexico puebla ^  outlet(1) city(1) hotel(1) food(1) travel(1) tripadvisor(1) reviews(1) ^ colonial(1) baroque(1) history(1) museum(1) ^7^Non School
-black lives matter meme ^  funny(2) watch(1) ^ revolution(1) progressive(1) ^3^Non School
-propaganda wwi ^  ^ books(2) literature(1) government(1) history(1) museum(1) wars(5) war(5) ^16^School
-people with generalized anxiety disorder symptom ^  ^ circuits(1) ^1^School
-spirit bound book cover ^  reviews(1) amazon(1) ^ books(2) history(1) ^3^School
-fire and ice ^  imdb(1) directions(1) ^ books(2) poem(1) ^3^School
-organelle function quizlet ^  games(5) ^ functions(1) biology(1) vocabulary(1) quiz(1) flashcards(1) quizlet(1) ^6^School
-sheen jimmy neutron ^  movies(1) tv(1) buy(1) imdb(1) reviews(1) amazon(1) youtube(1) ^ scientific(1) ^7^Non School
-kingdom hearts 2.8 ^  games(5) store(1) gamespot(1) buy(1) reviews(1) amazon(1) game(5) console(1) ^ definition(1) prologue(1) ^16^Non School
-middle school band ^  band(1) amazon(1) ^ instruments(1) books(2) students(1) ^4^School
-galactose ^  food(1) ^ dictionary(1) chemical(1) definition(1) ^3^School
-girl breaks back ^  watch(1) youtube(1) sport(1) ^ ^3^Non School
-brennen taylor gif ^  instagram(1) youtube(1) birthday(1) ^ history(1) ^3^Non School
-direct primary ^  party(1) ^ classroom(1) dictionary(1) government(1) political(1) politics(1) definition(1) ^6^School
-frases de la vida 2016 ^  facebook(1) ^ policy(1) ^1^Unknown
-witty quotes ^  movie(1) celebrities(1) funny(2) facebook(1) ^ goodreads(1) spoken(1) ^5^Non School
-melanie martinez ^  funny(2) facebook(1) store(1) watch(1) slap(1) tweets(1) party(1) youtube(1) game(5) ^ vocal(1) ^14^Non School
-esrt page 5 ^  directions(1) youtube(1) ^ equations(1) students(1) history(1) regents(1) ^4^School
-leonardo da vinci ^  town(1) ^ bbc(1) republic(1) history(1) renaissance(1) ^4^School
-partyhouse ^  rent(1) beer(1) store(1) party(1) ^ war(5) ^5^School
-harbor park mamaroneck ny ^  beer(1) reviews(1) yelp(1) directions(1) beach(1) ^ ^5^Non School
-gears ^  store(1) buy(1) amazon(1) ^ education(1) mechanical(1) policy(1) metric(1) precision(1) war(5) ^10^School
-bayern ^  profile(1) travel(1) cities(1) youtube(1) football(1) ^ federal(1) history(1) ^5^Non School
-define tension ^  buy(1) ^ dictionary(1) physics(1) poem(1) definition(1) ^4^School
-http://abcnews.go.com/ ^  outlet(1) facebook(1) watch(1) travel(1) towns(1) youtube(1) ^ politics(1) technology(1) ^6^Non School
-the process of whaling ^  ^ history(1) museum(1) ^2^School
-pinatubo 1991 ^  ^ education(1) teachers(1) ^2^School
-remi harris ^  soundcloud(1) facebook(1) tour(1) amazon(1) youtube(1) linkedin(1) ^ bbc(1) jazz(1) ^6^Non School
-beautiful llama ^  youtube(1) ^ ^1^Non School
-newts ^  facebook(1) food(1) buy(1) ^ rights(1) policy(1) ^3^Non School
-emperor penguin ^  ^ bbc(1) scientific(1) ^2^School
-to timbuktu ^  rotten(1) city(1) tour(1) travel(1) reviews(1) cities(1) ^ rights(1) republic(1) history(1) ^6^Non School
-world war 1 militarism ^  games(5) ^ government(1) vocabulary(1) flashcards(1) history(1) quizlet(1) war(5) ^10^School
-chibi michael jackson ^  celebrities(1) facebook(1) youtube(1) ^ ^3^Non School
-pirlo hairstyle ^  youtube(1) soccer(1) football(1) ^ books(2) ^3^Non School
-gundam barbatos lupus custom ^  store(1) buy(1) youtube(1) ^ mechanics(1) ^3^Non School
-teen wolf season 5 cover ^  instagram(1) movies(1) tv(1) buy(1) amazon(1) ^ ^5^Non School
-lance stewart ^  instagram(1) profile(1) facebook(1) buy(1) tweets(1) youtube(1) birthday(1) linkedin(1) snapchat(1) ^ ^9^Non School
-carli lloyd ^  instagram(1) games(5) facebook(1) tweets(1) ball(1) soccer(1) ^ ^10^Non School
-organiza ^  shopping(1) ^ verb(1) dictionary(1) translate(1) definition(1) translation(1) ^5^School
-puppies background hd ^  play(1) reviews(1) ^ ^2^Non School
-the boxer ^  band(1) rotten(1) hotel(1) spotify(1) watch(1) imdb(1) amazon(1) youtube(1) lyrics(1) ^ ^9^Non School
-ny congressional district election results ^  city(1) ^ congress(1) reform(1) president(1) ^3^School
-6 hours relaxing music ^  play(1) buy(1) youtube(1) ^ jazz(1) ^3^Non School
-political cartoons about women in the middle east ^  linkedin(1) ^ rights(1) policy(1) political(1) history(1) poetry(1) president(1) ^6^School
-europe before and after ww1 ^  food(1) ^ political(1) history(1) war(5) treaty(1) ^8^School
-donald trump ^  city(1) golf(1) hotel(1) watch(1) imdb(1) ^ president(1) ^5^Non School
-evdience ^  imdb(1) ^ dictionary(1) federal(1) definition(1) translation(1) ^4^School
+mom quotes ^  funny ^ washington ^1^Non School
+virginia tech football  ^  basketball baseball game sports football ^ history statistics ^5^Non School
+paintings ^  buy amazon ^ ^2^Non School
+overwatch memes ^  facebook game ^ ^2^Non School
+rashad jennings injury ^  play profile nfl game sports football ^ ^6^Non School
+the carrie diaries sebastian ^  city sex facebook tv imdb town comedy amazon party youtube ^ ^10^Non School
+beets ^  food ^ research ^1^Non School
+most expensive fake painting ^  facebook buy ^ history museum postwar ^3^School
+mexico puebla ^  outlet city hotel food travel reviews ^ colonial era history ^6^Non School
+black lives matter meme ^  instagram city funny facebook buy ^ ^5^Non School
+propaganda wwi ^  ^ books literature government history wars war ^6^School
+people with generalized anxiety disorder symptom ^  ^ ^0^Non School
+spirit bound book cover ^  reviews amazon ^ books history ^2^Non School
+fire and ice ^  movies rotten store shoes tv imdb amazon directions sport ^ books poem poetry ^9^Non School
+organelle function quizlet ^  games ^ functions biology cellular vocabulary quiz flashcards quizlet ^7^School
+sheen jimmy neutron ^  gang tv imdb amazon youtube ^ king scientific ^5^Non School
+kingdom hearts 2.8 ^  ign games store gamespot buy reviews amazon game console ^ definition prologue ^9^Non School
+middle school band ^  play band facebook ^ instruments percussion students jazz communication mallets educational university ^8^School
+galactose ^  food ^ dictionary chemical definition ^3^School
+girl breaks back ^  instagram funny sex facebook watch youtube linkedin ^ washington ^7^Non School
+brennen taylor gif ^  watch youtube birthday ^ ^3^Non School
+direct primary ^  party ^ dictionary government political politics definition ^5^School
+frases de la vida 2016 ^  facebook whatsapp ^ ^2^Non School
+witty quotes ^  celebrities funny ^ ^2^Non School
+melanie martinez ^  instagram facebook store watch tweets party youtube ^ ^7^Non School
+esrt page 5 ^  youtube ^ education equations ^2^School
+leonardo da vinci ^  town amazon ^ ages history renaissance ^3^School
+partyhouse ^  rent beer party birthday youtube ^ ^5^Non School
+harbor park mamaroneck ny ^  beer facebook reviews yelp directions beach ^ history ^6^Non School
+gears ^  store tv buy amazon ^ education mechanical precision war ^4^Non School
+bayern ^  profile store watch travel tv cities game soccer football ^ federal history ^9^Non School
+define tension ^  ^ dictionary physics definition ^3^School
+http://abcnews.go.com/ ^  outlet watch travel tv youtube sports ^ history politics blues technology ^6^Non School
+the process of whaling ^  ^ research history museum scientific ^4^School
+pinatubo 1991 ^  ^ ^0^Non School
+remi harris ^  facebook food watch amazon youtube linkedin ^ jazz blues ^6^Non School
+beautiful llama ^  shopping store ^ hiphop ^2^Non School
+newts ^  beer food buy ^ dictionary definition ^3^Non School
+emperor penguin ^  ^ king scientific ^2^School
+to timbuktu ^  city tour travel reviews ^ students rights languages history ^4^Non School
+world war 1 militarism ^  ^ colonial nationalism history wars prologue enotes war ^7^School
+chibi michael jackson ^  youtube anime ^ king ^2^Non School
+pirlo hairstyle ^  celebrity youtube photobucket soccer ^ ^4^Non School
+gundam barbatos lupus custom ^  city youtube ^ mechanics ^2^Non School
+teen wolf season 5 cover ^  movies tv buy reviews amazon ^ ^5^Non School
+lance stewart ^  instagram profile address facebook buy tweets reviews youtube birthday linkedin ^ ^10^Non School
+carli lloyd ^  instagram facebook tweets game soccer sports ^ ^6^Non School
+organiza ^  shopping ^ dictionary translate definition translation ^4^School
+puppies background hd ^  play funny ^ ^2^Non School
+the boxer ^  rotten spotify watch buy imdb reviews amazon youtube sports ^ ^9^Non School
+ny congressional district election results ^  party ^ politics race ^2^School
+6 hours relaxing music ^  buy reviews amazon youtube ^ ^4^Non School
+political cartoons about women in the middle east ^  buy amazon ^ schools policy political politics sociology president ^6^School
+europe before and after ww1 ^  ^ students political history war treaty ^5^School
+donald trump ^  city hotel facebook imdb ^ nytimes politics definition president ^4^Non School
+evdience ^  imdb ^ dictionary federal definition translation ^4^School
 mgiraldo@student.mamkschools.or ^  ^ ^0^Non School
-jim jones peoples temple video ^  band(1) tv(1) imdb(1) youtube(1) ^ ^4^Non School
-mamaroneck high school ^  baseball(1) reviews(1) football(1) ^ schools(1) students(1) statistics(1) ^3^Unknown
-jeff sied ^  instagram(1) facebook(1) tweets(1) youtube(1) birthday(1) ^ ^5^Non School
-senji ^  travel(1) town(1) game(5) ^ history(1) wars(5) ^7^Non School
-coolest places on earth ^  travel(1) cities(1) ^ era(1) ^2^Non School
-innuendo bingo ^  celebrities(1) facebook(1) watch(1) tv(1) youtube(1) game(5) ^ bbc(1) dictionary(1) ^10^Non School
-hey atheists ^  whatsapp(1) youtube(1) ^ washington(1) scientific(1) president(1) ^3^School
-student ^  city(1) travel(1) ^ dictionary(1) schools(1) students(1) educational(1) university(1) definition(1) ^6^School
-tiny houses ^  rent(1) ^ ^1^Non School
-christianity  ^  ^ bbc(1) beliefs(1) history(1) ^3^School
-bikini ^  celebrities(1) bra(1) bikini(1) store(1) celebrity(1) buy(1) underwear(1) sexy(1) beach(1) ^ triangle(1) micro(1) ^9^Non School
-fox ^  games(5) store(1) watch(1) travel(1) bmx(1) sports(1) ^ political(1) politics(1) ^10^Non School
-german soldiers ww1 ^  ^ educational(1) war(5) ^6^School
-obama biden memes ^  funny(2) trolls(1) jokes(1) ^ bbc(1) president(1) ^4^Non School
-concussion ^  imdb(1) football(1) ^ functions(1) disease(1) ^2^Unknown
-world war 1 fighting countries cartoon ^  punch(1) funny(2) joke(1) magazine(1) ^ ethnic(1) dictionary(1) era(1) political(1) disease(1) war(5) ^10^School
-cold stone ^  movie(1) facebook(1) tv(1) imdb(1) ^ adaptation(1) ^4^Non School
-pokemon bank sun and moon ^  ign(1) games(5) ^ ^6^Non School
-greif ^  ^ books(2) dictionary(1) systems(1) analytic(1) institutions(1) university(1) definition(1) ^8^School
-good for your health ^  hotel(1) ^ chemical(1) policy(1) research(1) acids(1) ^4^School
-happiest songs of all time ^  movie(1) youtube(1) ^ ^2^Non School
-snow bunny ^  play(1) ski(1) vacation(1) skiing(1) buy(1) imdb(1) sports(1) sexy(1) location(1) magazine(1) ^ slope(1) dictionary(1) definition(1) ^10^Non School
-facebook ^  play(1) funny(2) facebook(1) store(1) reviews(1) ^ ^6^Non School
-spoon ^  band(1) facebook(1) food(1) buy(1) ^ dictionary(1) contemporary(1) definition(1) bass(1) ^4^Unknown
-1920 portrait ^  ^ society(1) ^1^School
-how to draw monster ^  movies(1) games(5) buy(1) amazon(1) youtube(1) ^ books(2) pdf(1) ^9^Non School
-why do sodium and chloride react so readily ^  ^ bbc(1) atomic(1) periodic(1) flashcards(1) quizlet(1) ^5^School
-katherine hengel actress ^  celebrities(1) movies(1) profile(1) city(1) tv(1) buy(1) imdb(1) actress(1) amazon(1) linkedin(1) ^ books(2) anatomy(1) ^10^Non School
-ymca lyrics ^  youtube(1) lyrics(1) ^ mit(1) ^2^Non School
-image battle of lorraine ^  city(1) ^ history(1) society(1) war(5) ^7^School
-us at war ww1 ^  magazine(1) ^ congress(1) bbc(1) statistics(1) history(1) wars(5) prologue(1) war(5) president(1) ^16^School
-define allied powers in ww1 ^  ^ dictionary(1) vocabulary(1) flashcards(1) definition(1) quizlet(1) war(5) treaty(1) ^11^School
+jim jones peoples temple video ^  movie watch tv imdb amazon youtube ^ history ^6^Non School
+mamaroneck high school ^  reviews ^ schools students statistics ^3^School
+jeff sied ^  instagram profile facebook tweets youtube birthday ^ washington ^6^Non School
+senji ^  watch travel youtube game ^ king history wars ^4^Non School
+coolest places on earth ^  travel tv imdb cities location ^ history ^5^Non School
+innuendo bingo ^  play facebook watch tv youtube game ^ dictionary ^6^Non School
+hey atheists ^  ign ^ history washington ^2^School
+student ^  city ^ dictionary schools students educational university definition ^6^School
+tiny houses ^  rent ^ contemporary ^1^Non School
+christianity  ^  ^ beliefs history ^2^School
+bikini ^  celebrities bra bikini celebrity underwear sexy beach ^ triangle micro ^7^Non School
+fox ^  movies games store watch travel bmx sports ^ dynamics programming politics ^7^Non School
+german soldiers ww1 ^  amazon ^ war ^1^Non School
+obama biden memes ^  funny ^ chemistry president ^2^School
+concussion ^  imdb game sports football ^ ^4^Non School
+world war 1 fighting countries cartoon ^  punch funny magazine ^ dictionary era civil political history wars war ^7^School
+cold stone ^  instagram facebook store imdb ^ ^4^Non School
+pokemon bank sun and moon ^  ign games ^ systems ^2^Non School
+greif ^  hotel ^ dictionary books systems university definition ^5^School
+good for your health ^  vacation facebook travel magazine ^ research scientific disease ^4^Non School
+happiest songs of all time ^  city ^ ^1^Non School
+snow bunny ^  play ski vacation buy imdb sports sexy magazine ^ slope dictionary definition ^8^Non School
+facebook ^  play facebook store itunes reviews ^ government ^5^Non School
+spoon ^  band food amazon ^ dictionary definition bass authentic ^4^School
+1920 portrait ^  buy ^ society ^1^Non School
+how to draw monster ^  movies games buy amazon youtube ^ books students teachers ^5^Non School
+why do sodium and chloride react so readily ^  ^ chemical atomic periodic flashcards quizlet ^5^School
+katherine hengel actress ^  celebrities movies profile city tv buy imdb actress amazon linkedin ^ books ^10^Non School
+ymca lyrics ^  town youtube wii lyrics ^ mit ^4^Non School
+image battle of lorraine ^  watch photobucket ^ war ^2^Non School
+us at war ww1 ^  ^ congress democracy history war president ^5^School
+define allied powers in ww1 ^  ^ dictionary vocabulary policy flashcards definition quizlet war ^7^School
 unnesesary stress ^  ^ ^0^Non School
-highschool memes ^  funny(2) facebook(1) ^ students(1) ^3^Non School
-who is henry clay ^  ^ education(1) history(1) race(1) president(1) ^4^School
-ricegum ^  instagram(1) funny(2) facebook(1) watch(1) tweets(1) youtube(1) birthday(1) ^ dictionary(1) ^8^Non School
-fc barcelona 2016 dab ^  games(5) football(1) ^ technology(1) ^6^Non School
-love graffiti ^  play(1) facebook(1) buy(1) youtube(1) photobucket(1) ^ ^5^Non School
-usc vs notre dame ^  play(1) watch(1) game(5) football(1) ^ university(1) ^8^Non School
-charleston south carolina ^  trulia(1) shopping(1) profile(1) city(1) golf(1) travel(1) tripadvisor(1) reviews(1) cities(1) ^ research(1) ^9^Non School
-transport biology ^  ^ biology(1) physiology(1) electrical(1) dictionary(1) chemical(1) cellular(1) anatomy(1) systems(1) physics(1) chemistry(1) definition(1) ^11^School
-carly byr ^  profile(1) address(1) facebook(1) party(1) youtube(1) linkedin(1) ^ political(1) history(1) ^6^Non School
-pompeii ^  city(1) travel(1) tripadvisor(1) imdb(1) reviews(1) town(1) cities(1) ^ bbc(1) civilization(1) history(1) race(1) ^7^Non School
+highschool memes ^  funny facebook comedy anime ^ schools king ^4^Non School
+who is henry clay ^  ^ education dictionary history washington definition race president ^7^School
+ricegum ^  instagram profile watch tweets youtube birthday ^ dictionary statistics ^6^Non School
+fc barcelona 2016 dab ^  games city facebook ball football ^ enrique society ^5^Non School
+love graffiti ^  facebook buy youtube photobucket ^ ^4^Non School
+usc vs notre dame ^  play game sports football ^ university ^4^Non School
+charleston south carolina ^  trip shopping profile city hotel travel reviews traffic directions ^ ^9^Non School
+transport biology ^  games ^ biology electrical dictionary chemical vocabulary systems flashcards definition quizlet ^9^School
+carly byr ^  profile address facebook cities linkedin ^ ^5^Non School
+pompeii ^  city imdb reviews town cities youtube ^ civilization history race ^6^Non School
