@@ -10,15 +10,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+
+/**
+ * Database connection util class.
+ * 
+ * @author Vikas Matcha, Shijian(Tim) Xu
+ * @version 1.0
+ */
+
 public class DBUtil {
 	
 	static Properties pros = null;
     //static initial class of loading prop from db.properties
+	
+/**
+  * Constructor of DBUtil
+  * <p>
+  * Load database config from configuration file db.properties(src/db.properties).
+  */
     static {  
         pros = new Properties();
         try {
             //trying loading dbconfig from db.properties
-        	
         	ClassLoader loader = Thread.currentThread().getContextClassLoader();   
         	//System.out.println(loader.getResource("db.properties"));
         	InputStream in = loader.getResourceAsStream("db.properties");
@@ -31,6 +44,10 @@ public class DBUtil {
         }
     }
     
+/**
+ * 
+ * 
+ */ 
     public static Connection getConnection() {
         Connection conn = null;
         try {

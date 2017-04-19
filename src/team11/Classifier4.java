@@ -12,17 +12,42 @@ import java.util.Set;
 
 import com.mysql.jdbc.Connection;
 
+/**
+ * Forth Edition of Classifier created by team 11.
+ * Change original queries from txt file sampling data to dataset from database.
+ * 
+ * @author Shijian(Tim) Xu, Samuel Mann, 
+ * @version 1.0
+ */
+
+
 public class Classifier4 {
+	
 	public static void main(String[] args) throws FileNotFoundException {
 		classify();
 	}	
+	
+	
 	public static void classify(){
 		Connection conn = null;
 		//Scanner inEnrichedQuery,inRandomQueries,inNonschoolCorpus;		
 		try {
-			inEnrichedQuery = new Scanner(new File("enrichedQueries.txt"));
-			inRandomQueries = new Scanner(new File("randomSamplingOfQueries.txt"));
-			inNonschoolCorpus = new Scanner(new File("corpusNonschool.txt"));
+//			inEnrichedQuery = new Scanner(new File("enrichedQueries.txt"));
+//			inRandomQueries = new Scanner(new File("randomSamplingOfQueries.txt"));
+			ArrayList<String> inQueries = new ArrayList<String>();
+			ArrayList<String> inEnrichedQuery = new ArrayList<String>();
+			
+			ArrayList<String[]> in = new ArrayList<String[]>();
+			String[] column = {"search_query", "information"};
+			String[] sqlquery = {"1", "1581"};
+			in = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.enrich_query WHERE enrich_query_id >= ? AND enrich_query_id <= ?;", column, sqlquery);
+			for (int i = 0; i < in.size(); i ++) {	
+				inQueries.set(i, in.get(i)[0]);
+				inEnrichedQuery.set(i, in.get(i)[1]);
+			}
+
+			
+			Scanner inNonschoolCorpus = new Scanner(new File("corpusNonschool.txt"));
 			Scanner inStopWords = new Scanner(new File("stopwords.txt"));
 			Scanner inSchoolCorpus = new Scanner(new File("corpusSchool.txt"));
 
@@ -61,8 +86,10 @@ public class Classifier4 {
 			
 			StringBuffer temp = new StringBuffer();
 			int i=2;
-			while(inEnrichedQuery.hasNextLine()){				
-				String  nxt = inEnrichedQuery.nextLine();
+//			while(inEnrichedQuery.hasNextLine()){				
+//				String  nxt = inEnrichedQuery.nextLine();
+			for (int j = 0; i < in.size(); i ++) {	
+				inEnrichedQuery.get(i);
 				if(nxt.equals(Integer.toString(i))){
 					String cleaned = temp.toString().replaceAll("[^a-zA-Z ]", " ").toLowerCase();
 					bagOfWords.add(cleaned);
