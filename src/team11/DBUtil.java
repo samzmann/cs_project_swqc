@@ -69,8 +69,10 @@ public class DBUtil {
 	{	
 		try {
 			PreparedStatement ps = conn.prepareStatement(statement);
+			
 			for (int i = 1; i <= query.length; i++)
 				ps.setString(i, query[i-1]);
+			System.out.println(ps);
 			ResultSet rs = ps.executeQuery();
 			ArrayList<String[]> array = new ArrayList<String[]>();
 			while (rs.next()) {

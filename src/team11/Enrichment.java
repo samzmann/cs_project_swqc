@@ -31,21 +31,21 @@ public class Enrichment {
 	public void searchResults(Connection conn) throws Exception {
 //		Scanner in = new Scanner(new File("randomSamplingOfQueries.txt"));
 		ArrayList<String[]> in = new ArrayList<String[]>();
-		String[] column = {"searchQuery"};
-		String[] sqlquery = {"1501", "2000"};
-		in = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.dataset WHERE id >= ? AND id <= ?;", column, sqlquery);
-
+//		String[] column = {"searchQuery"};
+//		String[] sqlquery = {"1501", "2000"};
+//		in = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.dataset WHERE id >= ? AND id <= ?;", column, sqlquery);
+		in = jdbctest.getSpecificStudentsQuery(conn);
+		
 		PrintStream out = new PrintStream(new File("enrichedQueries.txt"));
 		for (int i = 0; i < in.size(); i ++) {	
 //		if(in.hasNextLine()){
 //		while(in.hasNextLine()){
-			
-			int id = i + 1501;
+
 			String[] query = in.get(i);
 			
-			out.println("\n"+ (i+1) + query[0]);
-			System.out.println((i+1) + ". " + query[0]);
-			String results = search(query[0], offset, limit);
+			out.println("\n"+ (i+1) + query[1]);
+			System.out.println((i+1) + ". " + query[1]);
+			String results = search(query[1], offset, limit);
 			
 			ArrayList<String> resultName = new ArrayList<>();
 			ArrayList<String> resultSnippet = new ArrayList<>();
@@ -72,10 +72,11 @@ public class Enrichment {
 			}
 			out.println();
 			
-			String[] a = {resultString, String.valueOf(id), query[0]};
-//			DBUtil.post(conn, "INSERT INTO `cs_project_swqc`.`enrich_query` (`query`, `infomation`) VALUES (?, ?);", a);
-			DBUtil.post(conn, "UPDATE `cs_project_swqc`.`enrich_query` SET `infomation` = ? WHERE `enrich_query_id` = ? AND `query` = ?;", a);
+			String[] a = { query[0], query[1], resultString };
+//			DBUtil.post(conn, "INSERT INTO `cs_project_swqc`.`enrich_query` (`student_id`, `search_query`, `infomation`) VALUES (?, ?, ?);", a);
+//			DBUtil.post(conn, "UPDATE `cs_project_swqc`.`enrich_query` SET `infomation` = ? WHERE `enrich_query_id` = ? AND `query` = ?;", a);
 		}
+		out.close();
 		System.out.println("\nDone enriching!\n");
 	}
 
@@ -95,6 +96,9 @@ public class Enrichment {
 
 
 			HttpResponse response = httpclient.execute(request);
+			System.out.println(request);
+			System.out.println(this.apiKey);
+			System.out.println(response);
 			HttpEntity entity = response.getEntity();
 
 			if (entity != null) {
@@ -111,7 +115,7 @@ public class Enrichment {
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			Enrichment bingSearch = new Enrichment("b811e53340084c4898df32589496f201", 0, 10);
+			Enrichment bingSearch = new Enrichment("65367f79e86c42d99ebcf3f41c91314f", 0, 10);
 			bingSearch.searchResults(conn);
 		} catch(Exception e) {
 			System.out.println(e);
