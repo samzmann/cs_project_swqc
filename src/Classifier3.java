@@ -69,9 +69,11 @@ public class Classifier3 {
 					temp.append(nxt+ " ");
 				}	
 			}
+
 			String cleaned = temp.toString().replaceAll("[^a-zA-Z ]"," ").toLowerCase();
+			System.out.println(cleaned);
 			bagOfWords.add(cleaned);
-			
+			System.out.println(bagOfWords.size());
 			int match_count = 0, match_count_bad = 0;
 			int j = 0;
 			for(j=0;j<bagOfWords.size(); j++){

@@ -54,8 +54,8 @@ public class DBUtil {
             //loading database driver
             Class.forName(pros.getProperty("mysqlDriver"));
             //connect database
-            conn = DriverManager.getConnection(pros.getProperty("mysqlURL"),
-                    pros.getProperty("mysqlUser"),pros.getProperty("mysqlPwd"));
+            conn = DriverManager.getConnection(pros.getProperty("awsmysqlURL"),
+                    pros.getProperty("awsmysqlUser"),pros.getProperty("awsmysqlPwd"));
              
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -93,22 +93,20 @@ public class DBUtil {
 			PreparedStatement ps = conn.prepareStatement(statement);
 			for (int i = 1; i <= a.length; i++)
 				ps.setString(i, a[i-1]);
-			System.out.println(ps);
 			ps.executeUpdate();
 		} catch (Exception e) {
-			System.out.println(a);
 			System.out.println(e);
 		} finally {
 		}
 	}
 
 	
-	public static void closeConnection(Connection conn) throws Exception {// update table contents
+	public static void closeConnection(Connection conn) {// update table contents
 		try {
 			conn.close();
-		} catch (Exception e) {
-			System.out.println(e);
-		} finally {
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

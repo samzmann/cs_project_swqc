@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class Classifier {
 	public static void main(String[] args) throws FileNotFoundException {
-		Bing bingSearch = new Bing("ad687097e5b743e1beff7f9987072310", 0, 10);
+		Bing bingSearch = new Bing("5ad4ae8a7635441fb2a6817f76904cf6", 0, 10);
 		bingSearch.searchResults();
 		classify();
 	}	

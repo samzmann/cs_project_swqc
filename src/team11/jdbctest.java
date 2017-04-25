@@ -20,7 +20,7 @@ public class jdbctest {
         	conn = DBUtil.getConnection();
 //        	jdbctest.migrateDataFromCSVtoDB(conn);
 //        	jdbctest.randomPickStudents();
-//        	jdbctest.getSpecificStudentsQuery(conn);
+        	jdbctest.getSpecificStudentsQuery(conn);
 
         } catch (Exception e) {
         	e.printStackTrace();
@@ -67,7 +67,7 @@ public class jdbctest {
         ArrayList<Integer> list = new ArrayList<Integer>();
 
         for(int i = 0; i < values.length;i++){
-            int number = random.nextInt(971) + 1;
+            int number = random.nextInt(917) + 1;
             
             if(!list.contains(number)){
                 list.add(number);
@@ -111,10 +111,9 @@ public class jdbctest {
     			sqlQuery.append("'s"+s+"',");
     		}
     		sqlQuery.deleteCharAt(sqlQuery.length()-1);
-    		sqlQuery.append(") LIMIT 9986, 1000;");
-    		System.out.println(sqlQuery.toString());
-    		String[] subquery = {};
+    		sqlQuery.append(");");
     		String[] column = {"student_id","search_query"};
+    		String[] subquery = {};
     		out = DBUtil.get(conn, sqlQuery.toString(), column, subquery );
     		System.out.println(out.get(0)[0]);
     	} catch (Exception e) {
