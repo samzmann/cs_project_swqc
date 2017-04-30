@@ -3,14 +3,20 @@ package team11;
 import java.io.File;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import com.csvreader.CsvReader;
+import com.csvreader.CsvWriter;
+
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 
 /**
  * Forth Edition of Classifier created by team 11.
@@ -24,7 +30,61 @@ import java.sql.Connection;
 public class Classifier4 {
 	public static void main(String[] args){
 		classify();
+//		accuracyTest();
 	}	
+	public static void accuracyTest() {
+		try {
+			PrintStream outQueries = new PrintStream(new File("accuracyQueries.txt"));
+		
+		//read gpa from csv			
+			String[] header = {};
+			ArrayList<String> queries = new ArrayList<String>();
+			ArrayList<String> text1 = new ArrayList<String>();
+			ArrayList<String> text2 = new ArrayList<String>();
+			CsvReader reader = new CsvReader(
+					"/Users/Tim/Desktop/research paper/CapstoneCourseSpring2017/data/AccuracyTest.csv");
+			while (reader.readRecord()) {
+				// save header of cvs
+				int row = (int) reader.getCurrentRecord();
+				if (reader.getCurrentRecord() == 0) {
+					header = reader.getValues();
+					System.out.println("Its 0 row "+header[0]+" "+header[1]);
+				} 
+				else if (row >= 3){
+					queries.add(reader.getValues()[2]);
+					text1.add(reader.getValues()[3]);
+					text2.add(reader.getValues()[7]);
+				}
+			}
+			reader.close();
+			text1.size();
+			CsvWriter writer = new CsvWriter(
+					"/Users/Tim/Desktop/research paper/CapstoneCourseSpring2017/data/testTemp.csv");
+			
+			for (int i = 0; i < text1.size(); i++) {
+				outQueries.println(queries.get(i));
+				if(
+					(text1.get(i).equals("Non School related") && text2.get(i).equals("Non school")) || 
+					(text1.get(i).equals("School related") && text2.get(i).equals("School")) ||
+					(text1.get(i).equals("Unknown") && text2.get(i).equals("Unknown"))
+				) {
+					String[] tmp = {text1.get(i), text2.get(i), ""};
+					writer.writeRecord(tmp);
+				} 
+				else {
+					String[] tmp = {text1.get(i), text2.get(i), "Diff"};
+					writer.writeRecord(tmp);
+				}
+				
+			}
+			writer.close();
+			outQueries.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			
+		}
+	}
 	public static void classify(){
 		Connection conn = null;
 		
@@ -32,26 +92,16 @@ public class Classifier4 {
 			int[] domainCount = {0,0,0,0,0,0};
 			ArrayList<Integer> checkSid = new ArrayList<Integer>();
 			
-		//Read randomSid.txt file to load picked student id
-			ArrayList<Integer> sid = new ArrayList<Integer>();
-			Scanner inRandomSid = new Scanner(new File("randomSid.txt"));
-			while(inRandomSid.hasNext()) {
-				sid.add(new Integer(inRandomSid.nextLine()));
-			}
-			Collections.sort(sid);
-			inRandomSid.close();
-			
 		//read words list from txt file, including school related word, stop word, non school related word.
-			Scanner inNonschoolCorpus = new Scanner(new File("corpusNonschool.txt"));
+			Scanner inNonschoolCorpus = new Scanner(new File("corpusNonschool2.txt"));
 			Scanner inStopWords = new Scanner(new File("stopwords.txt"));
-			Scanner inSchoolCorpus = new Scanner(new File("corpusSchool.txt"));
+			Scanner inSchoolCorpus = new Scanner(new File("corpusSchool2.txt"));
 			
 		//read out put file.
 			PrintStream outCorpusFinal = new PrintStream(new File("cleanedQueries.txt"));
 			PrintStream outClassifiedQueries = new PrintStream(new File("classified.txt"));
+			PrintStream outFailed = new PrintStream(new File("failed.txt"));
 			
-		
-		
 		//initial hash table and set for words lists
 			HashMap<String, Integer> schoolCorpusWords = new HashMap<String, Integer>();
 			HashMap<String, Integer> nonSchoolCorpusWords = new HashMap<String, Integer>();
@@ -77,82 +127,96 @@ public class Classifier4 {
 				}
 				else
 					schoolCorpusWords.put(word, 1);
-			}	
+			}
+			
+		//read gpa from csv			
+			String[] header = {};
+			ArrayList<String> uid = new ArrayList<String>();
+			ArrayList<String> gpa = new ArrayList<String>();
+			CsvReader reader = new CsvReader(
+					"/Users/Tim/Desktop/research paper/CapstoneCourseSpring2017/data/studentToGPA.csv");
+			while (reader.readRecord()) {
+				// save header of cvs
+				if (reader.getCurrentRecord() == 0) {
+					header = reader.getValues();
+					System.out.println("Its 0 row "+header[0]+" "+header[1]);
+				} else {
+					uid.add(reader.getValues()[0]);
+					gpa.add(reader.getValues()[1]);
+				}
+			}
+			reader.close();
 			
 		//Based on student from list to get his/her data set and enriched queries.
-			for (int i = 0; i < sid.size(); i ++)
+
 			{
 		//initial in attribute for each student
+				ArrayList<String> inSid = new ArrayList<String>();
 				ArrayList<String> inQueries = new ArrayList<String>();
 				ArrayList<String> inEnrichedQuery = new ArrayList<String>();
 				ArrayList<String> inDomain = new ArrayList<String>();
 				ArrayList<String> inTime = new ArrayList<String>();
 				ArrayList<String> inSearchCount = new ArrayList<String>();
+				ArrayList<String> inGPA = new ArrayList<String>();
 				
 				Set<String> enrichedWords = new HashSet<String>();
 				ArrayList<String> bagOfWords = new ArrayList<String>();	
 			
-				int j;
-				String studentid = sid.get(i).toString();
-				switch (studentid.length()){
-    			case 1:
-    				studentid = "s00"+studentid;
-    				break;
-    			case 2:
-    				studentid = "s0"+studentid;
-    				break;
-    			case 3:
-    				studentid = "s"+studentid;
-    			default:
-    				break;
-				}
-				System.out.println(studentid);
+				int j, k;
 				
-		//Connect database, load data from table dataset and enrich_query
-				conn = DBUtil.getConnection();
-				ArrayList<String[]> tableEnrich = new ArrayList<String[]>();
-				ArrayList<String[]> tableDataset = new ArrayList<String[]>();
-				String[] columnEnrich = {"enrich_query_id", "student_id", "search_query", "information"};
-				//					[0]enriched table id,	[1]"s011"		[2]query  	[3]enriched
-				String[] columnDataset = {"dataset_id", "student_id", "search_query",  "domain", "time", "count"};
-				//					[0]dataset table id,	[1]"s011"		[2]query  	 [3],	   [4],		[5]
-				String[] sqlquery = {studentid};
-				tableEnrich = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.enrich_query WHERE enrich_query.student_id = ? ;", columnEnrich, sqlquery);
-				tableDataset = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.dataset WHERE dataset.student_id = ? ;", columnDataset, sqlquery);
 
 				
-				for (j = 0; j < tableEnrich.size(); j ++) 
+		//Connect database, for each sid load his/her queries
+				conn = DBUtil.getConnection();
+				ArrayList<String[]> tableDataset = new ArrayList<String[]>();
+				String[] columnDataset = {"dataset_id", "student_id", "search_query",  "domain", "time", "count"};
+				//					[0]dataset table id,	[1]"s011"		[2]query  	 [3],	   [4],		[5]
+				String[] sqlquery = {};
+				tableDataset = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.dataset WHERE student_id != '';", columnDataset, sqlquery);
+				
+				ArrayList<String[]> tableEnrichQuery = new ArrayList<String[]>();
+				String[] columnEnrichQuery = {"enrich_query_id", "student_id", "search_query",  "information", "gpa"};
+				//									[0]				[1]"s011"		[2]query  	 	[3],	   	[4]	
+				tableEnrichQuery = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.enrich_query;", columnEnrichQuery, sqlquery);
+				
+				
+		//for each query of a specific student, read enriched information from enriched table.
+				for (j = 0; j < tableDataset.size(); j ++)
 				{
-					if ((tableEnrich.get(j)[1].equals(tableDataset.get(j)[1])) && (tableEnrich.get(j)[2].equals(tableDataset.get(j)[2]))) {
-						inQueries.add(tableEnrich.get(j)[2]);
-						inEnrichedQuery.add(tableEnrich.get(j)[3].replace("\\n", " "));
+					
+					if (tableEnrichQuery.get(j)[1].equals(tableDataset.get(j)[1]) && tableEnrichQuery.get(j)[2].equals(tableDataset.get(j)[2])) {
+						String cleaned = tableEnrichQuery.get(j)[3].replaceAll("[^a-zA-Z ]"," ").toLowerCase();
+						
+						inSid.add(tableDataset.get(j)[1]);
+						inQueries.add(tableDataset.get(j)[2]);
+						inEnrichedQuery.add(tableEnrichQuery.get(j)[3].replace("\\n", " "));
 						inDomain.add(tableDataset.get(j)[3]);
 						inTime.add(tableDataset.get(j)[4]);
 						inSearchCount.add(tableDataset.get(j)[5]);
+						inGPA.add(tableEnrichQuery.get(j)[4]);
+						
+						bagOfWords.add(cleaned);
 					} else {
-						System.out.println(tableEnrich.get(j)[1] +" "+ tableDataset.get(j)[1]);
-						System.out.println(tableEnrich.get(j)[2] + " " + tableDataset.get(j)[2]);
+						System.out.println(tableEnrichQuery.get(j)[2] + " " + tableDataset.get(j)[2]);
 					}
 				}
 				checkSid.add(inQueries.size());
 				System.out.println(inQueries.size());
-				
-		//start processing for each enriched query 
-				String query = "";
-				for (j = 0; j < inEnrichedQuery.size(); j++)
-				{
-					String cleaned = inEnrichedQuery.get(j).replaceAll("[^a-zA-Z ]"," ").toLowerCase();
-					bagOfWords.add(cleaned);
-				}
-				System.out.println(bagOfWords);
+
 				System.out.println(bagOfWords.size());
 				System.out.println("===================================================");
 
 		//based on enriched query to compare with words list(school related, non school related, stop, etc...)
+				String query = "";
 				int match_count = 0, match_count_bad = 0;
 				
 				for(j = 0; j < bagOfWords.size(); j++)
 				{
+					SimpleDateFormat sdf = new SimpleDateFormat("MM/DD/YY HH:mm");
+					Date date =sdf.parse(inTime.get(j));
+					Calendar cal=Calendar.getInstance();
+					cal.setTime(date);
+					
 					switch(inDomain.get(j))
 					{
 						case "bing":
@@ -218,16 +282,21 @@ public class Classifier4 {
 					
 					System.out.println(inQueries.get(j)+" "+match_count+" "+match_count_bad);
 					String related = "";
+					
+			// comparing the number of match count and non match count to conclude the queries is school related or not.
 					if(match_count_bad == 0  && match_count == 0){
 						related = "Non School related";
 						outClassifiedQueries.println(res_bad + "^" + res + "^" + match_count + "^Non School");
 					}
+			// if match count equal non match, load the domain and searching time to judge.
 					else if(match_count_bad == match_count){
 						if (inDomain.get(j) == "youtube") {
 							related = "Non School related";
 							outClassifiedQueries.println(res_bad+ "^"+ res + "^" + match_count + "^Non School");
-						}
-						else {
+						} else if (cal.HOUR_OF_DAY > 8 && cal.HOUR_OF_DAY < 17) {
+							related = "School related";
+							outClassifiedQueries.println(res_bad + "^" + res + "^" + match_count + "^School");
+						} else {
 							related = "Unknown";
 							outClassifiedQueries.println(res_bad + "^" + res + "^" + match_count + "^Unknown");
 						}
@@ -243,8 +312,8 @@ public class Classifier4 {
 					match_count = 0;
 					match_count_bad = 0;
 					enrichedWords.clear();
-					String[] newClassified = {studentid, inQueries.get(j), inDomain.get(j), inTime.get(j), inSearchCount.get(j), related};
-					DBUtil.post(conn, "INSERT INTO `cs_project_swqc`.`classified` (`student_id`, `search_query`, `domain`, `time`, `count`, `related`) "+
+					String[] newClassified = {inSid.get(j), inQueries.get(j), inDomain.get(j), inTime.get(j), inSearchCount.get(j), related};
+					DBUtil.post(conn, "INSERT INTO `cs_project_swqc`.`classified_new` (`student_id`, `search_query`, `domain`, `time`, `count`, `related`) "+
 					"VALUES (?, ?, ?, ?, ?, ?);", newClassified);
 	        	}
 			}
@@ -256,6 +325,7 @@ public class Classifier4 {
 			System.out.println();
 			
 			outCorpusFinal.close();
+			outFailed.close();
 			
 			inNonschoolCorpus.close();
 			inStopWords.close();

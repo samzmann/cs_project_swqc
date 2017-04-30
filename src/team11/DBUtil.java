@@ -54,8 +54,8 @@ public class DBUtil {
             //loading database driver
             Class.forName(pros.getProperty("mysqlDriver"));
             //connect database
-            conn = DriverManager.getConnection(pros.getProperty("awsmysqlURL"),
-                    pros.getProperty("awsmysqlUser"),pros.getProperty("awsmysqlPwd"));
+            conn = DriverManager.getConnection(pros.getProperty("mysqlURL"),
+                    pros.getProperty("mysqlUser"),pros.getProperty("mysqlPwd"));
              
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

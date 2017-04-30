@@ -17,6 +17,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.csvreader.CsvReader;
+
 public class Enrichment {
 	private String apiKey;
 	private int offset;
@@ -104,13 +106,123 @@ public class Enrichment {
 		return "{}";
 	}
 	
+	public static void loadEnrichment() {
+		Connection conn = null;
+		PrintStream outFailed = null;
+		try {
+			outFailed = new PrintStream(new File("failed.txt"));
+			
+			String[] header = {};
+			ArrayList<String> uid = new ArrayList<String>();
+			ArrayList<String> gpa = new ArrayList<String>();
+			CsvReader reader = new CsvReader(
+					"/Users/Tim/Desktop/research paper/CapstoneCourseSpring2017/data/studentToGPA.csv");
+			while (reader.readRecord()) {
+				// save header of cvs
+				if (reader.getCurrentRecord() == 0) {
+					header = reader.getValues();
+					System.out.println("Its 0 row "+header[0]+" "+header[1]);
+				} else {
+					uid.add(reader.getValues()[0]);
+					gpa.add(reader.getValues()[1]);
+				}
+			}
+			reader.close();
+			
+//			for (int i = 0; i < uid.size(); i ++)
+			for (int i = 840; i < uid.size(); i ++)
+			{
+				String studentid = uid.get(i);
+				String strGpa = gpa.get(i);
+				System.out.println(studentid);
+				
+				ArrayList<String> inQueries = new ArrayList<String>();
+				ArrayList<String> inEnrichedQuery = new ArrayList<String>();
+				
+				conn = DBUtil.getConnection();
+				
+				ArrayList<String[]> tableDataset = new ArrayList<String[]>();
+				String[] columnDataset = {"dataset_id", "student_id", "search_query",  "domain", "time", "count"};
+				//					[0]dataset table id,	[1]"s011"		[2]query  	 [3],	   [4],		[5]
+				String[] sqlquery = {studentid};
+				tableDataset = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.dataset WHERE dataset.student_id = ? ;", columnDataset, sqlquery);
+				
+				int j;
+				for (j = 0; j < tableDataset.size(); j ++)
+				{
+					ArrayList<String[]> tableEnrich = new ArrayList<String[]>();
+					
+					String[] query = {tableDataset.get(j)[2]};
+					String[] columnEnriched = {"enriched", "status"};
+					//							[0],		[1]				
+					tableEnrich = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.enriched WHERE enriched.`query` = ? ;", columnEnriched, query);
+					
+					String enrichedQuery = "";
+					String cleaned = "";
+					if (tableEnrich.size() != 0 && tableEnrich.get(0)[0] != null) {
+						enrichedQuery = tableEnrich.get(0)[0].replace("\\n", " ");
+						cleaned = enrichedQuery.replaceAll("[^a-zA-Z ]"," ").toLowerCase();
+					} else {
+						outFailed.println(tableDataset.get(j)[0]+" "+tableDataset.get(j)[1]+" "+tableDataset.get(j)[2]);
+					}
+					
+					inQueries.add(query[0]);
+					inEnrichedQuery.add(enrichedQuery);
+				}
+				
+				for (j = 0; j < inQueries.size(); j++)
+				{
+					String[] newClassified = {studentid, inQueries.get(j), inEnrichedQuery.get(j), strGpa};
+					DBUtil.post(conn, "INSERT INTO `cs_project_swqc`.`enrich_query15` (`student_id`, `search_query`, `information`, `gpa`) VALUES (?,?,?,?);", newClassified);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			DBUtil.closeConnection(conn);
+			outFailed.close();
+		}
+		
+	}
+	
+	public static void temp() {
+		Connection conn = null;
+		
+		try {
+			
+			conn = DBUtil.getConnection();
+			for (int i = 2; i <= 15; i++)
+			{
+				ArrayList<String[]> tableDataset = new ArrayList<String[]>();
+				String[] columnDataset = {"student_id", "search_query",  "information", "gpa"};
+				String[] sqlquery = {};
+				tableDataset = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.enrich_query"+i+";", columnDataset, sqlquery);
+	
+				for (int j = 0; j < tableDataset.size(); j++)
+				{
+					String[] newClassified = {tableDataset.get(j)[0], tableDataset.get(j)[1], tableDataset.get(j)[2], tableDataset.get(j)[3]};
+					DBUtil.post(conn, "INSERT INTO `cs_project_swqc`.`enrich_query` (`student_id`, `search_query`, `information`, `gpa`) VALUES (?,?,?,?);", newClassified);
+				}
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			DBUtil.closeConnection(conn);
+		}
+		
+	}
+	
+	
 	
 	public static void main(String[] args) throws Exception {
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			Enrichment bingSearch = new Enrichment("5ad4ae8a7635441fb2a6817f76904cf6", 0, 10);
-			bingSearch.searchResults(conn);
+//			Enrichment bingSearch = new Enrichment("5ad4ae8a7635441fb2a6817f76904cf6", 0, 10);
+//			bingSearch.searchResults(conn);
+//			loadEnrichment();
+			temp();
 		} catch(Exception e) {
 			System.out.println(e);
 		} finally {

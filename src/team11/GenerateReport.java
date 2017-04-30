@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.PrintStream;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Random;
+
+import com.csvreader.CsvReader;
+import com.csvreader.CsvWriter;
 
 public class GenerateReport {
 
@@ -15,13 +19,56 @@ public class GenerateReport {
 	public static void generate(String[] option) {
 		Connection conn = null;
 		PrintStream outReport = null;
+		CsvWriter writer = null;
 		try {
 			
-			String sql = "SELECT * FROM cs_project_swqc.classified";
-			if (option.length != 0) {
-				sql += " WHERE student_id IN ("+option[0]+")";
-			} 
-			sql +=";";
+//			String sql = "SELECT * FROM cs_project_swqc.classified";
+//			if (option.length != 0) {
+//				sql += " WHERE classified_id IN ("+option[0]+")";
+//			} 
+//			sql +=";";
+			ArrayList<String> GPA = new ArrayList<String>();
+			CsvReader reader = new CsvReader(
+					"/Users/Tim/Desktop/research paper/CapstoneCourseSpring2017/data/studentToGPA.csv");
+			while (reader.readRecord()) {
+				// save header of cvs
+				if (reader.getCurrentRecord() == 0) {
+					System.out.println("Its 0 row");
+					reader.getValues();
+				} else {
+					GPA.add(reader.getValues()[1]);
+				}
+			}
+			reader.close();
+			
+			Random rand = new Random(); 
+	        ArrayList<Integer> list = new ArrayList<Integer>();
+	        for (int i = 0; i <= 4000; i++)
+			{
+				int no = rand.nextInt(116432) + 1;
+	            
+	            if(!list.contains(no)){
+	                list.add(no);
+	            } else {
+	            	i--;
+	            }
+			}
+	        
+			String sql = "SELECT * FROM cs_project_swqc.classified_new WHERE classified_id IN (";
+			for (int i = 0; i < list.size(); i++)
+			{
+				if (i == 0)
+					sql += list.get(i);
+				else
+					sql += "," + list.get(i);
+			}
+			
+			sql += ");";
+			
+			writer = new CsvWriter(
+					"/Users/Tim/Desktop/research paper/CapstoneCourseSpring2017/data/reportCSV.csv");
+			String[] header = {"", "student_id", "search_query", "domain", "time", "count", "related", "GPA"};
+			writer.writeRecord(header);
 			
 			outReport = new PrintStream(new File("reportFile.txt"));
 			conn = DBUtil.getConnection();
@@ -44,6 +91,11 @@ public class GenerateReport {
 			{
 				String[] currentRow = in.get(i);
 				int intCount = new Integer(currentRow[4]);
+				
+				int intSid = new Integer(currentRow[0].substring(1, currentRow[0].length()));
+				
+				String[] tmp = { ""+(i+1), currentRow[0], currentRow[1], currentRow[2], currentRow[3], currentRow[4], currentRow[5], GPA.get(intSid-1)};
+				writer.writeRecord(tmp);
 				
 				switch (currentRow[2]) {
 				case "bing":
@@ -125,6 +177,7 @@ public class GenerateReport {
 			e.printStackTrace();
 		} finally {
 			DBUtil.closeConnection(conn);
+			writer.close();
 			outReport.close();
 		}
 	}
