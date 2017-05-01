@@ -293,7 +293,7 @@ public class Classifier4 {
 						if (inDomain.get(j) == "youtube") {
 							related = "Non School related";
 							outClassifiedQueries.println(res_bad+ "^"+ res + "^" + match_count + "^Non School");
-						} else if (cal.HOUR_OF_DAY > 8 && cal.HOUR_OF_DAY < 17) {
+						} else if (cal.HOUR_OF_DAY >= 15) {
 							related = "School related";
 							outClassifiedQueries.println(res_bad + "^" + res + "^" + match_count + "^School");
 						} else {
