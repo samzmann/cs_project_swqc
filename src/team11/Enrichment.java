@@ -19,6 +19,15 @@ import org.json.JSONObject;
 
 import com.csvreader.CsvReader;
 
+/**
+ * Searching enrichment information of each queries which load from dataset table in database.
+ * A modified Class of Bing.java
+ * 
+ * @author Shijian(Tim) Xu, Vikas Matcha
+ * @version 1.0
+ */
+
+
 public class Enrichment {
 	private String apiKey;
 	private int offset;
@@ -30,6 +39,17 @@ public class Enrichment {
 		this.limit = limit;
 	}
 	
+	
+/**
+ * The original function of searching enriched message by using Bing api.
+ * 
+ * @param conn
+ * 			   Connection object of current connection to database.
+ * 
+ * @throws Exception
+ * 			   The error of processing database.
+ * 
+ */
 	public void searchResults(Connection conn) throws Exception {
 		
 		ArrayList<String[]> in = new ArrayList<String[]>();
@@ -106,6 +126,10 @@ public class Enrichment {
 		return "{}";
 	}
 	
+	/**
+	 * A edited way of merging enriched information from database.zz
+	 * 
+	 */
 	public static void loadEnrichment() {
 		Connection conn = null;
 		PrintStream outFailed = null;
@@ -129,8 +153,7 @@ public class Enrichment {
 			}
 			reader.close();
 			
-//			for (int i = 0; i < uid.size(); i ++)
-			for (int i = 840; i < uid.size(); i ++)
+			for (int i = 0; i < uid.size(); i ++)
 			{
 				String studentid = uid.get(i);
 				String strGpa = gpa.get(i);
@@ -184,45 +207,42 @@ public class Enrichment {
 		}
 		
 	}
-	
-	public static void temp() {
-		Connection conn = null;
-		
-		try {
-			
-			conn = DBUtil.getConnection();
-			for (int i = 2; i <= 15; i++)
-			{
-				ArrayList<String[]> tableDataset = new ArrayList<String[]>();
-				String[] columnDataset = {"student_id", "search_query",  "information", "gpa"};
-				String[] sqlquery = {};
-				tableDataset = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.enrich_query"+i+";", columnDataset, sqlquery);
-	
-				for (int j = 0; j < tableDataset.size(); j++)
-				{
-					String[] newClassified = {tableDataset.get(j)[0], tableDataset.get(j)[1], tableDataset.get(j)[2], tableDataset.get(j)[3]};
-					DBUtil.post(conn, "INSERT INTO `cs_project_swqc`.`enrich_query` (`student_id`, `search_query`, `information`, `gpa`) VALUES (?,?,?,?);", newClassified);
-				}
-			}
-			
-		} catch (Exception e) {
-			System.out.println(e);
-		} finally {
-			DBUtil.closeConnection(conn);
-		}
-		
-	}
-	
-	
+//	
+//	public static void temp() {
+//		Connection conn = null;
+//		
+//		try {
+//			
+//			conn = DBUtil.getConnection();
+//			for (int i = 2; i <= 15; i++)
+//			{
+//				ArrayList<String[]> tableDataset = new ArrayList<String[]>();
+//				String[] columnDataset = {"student_id", "search_query",  "information", "gpa"};
+//				String[] sqlquery = {};
+//				tableDataset = DBUtil.get(conn, "SELECT * FROM cs_project_swqc.enrich_query"+i+";", columnDataset, sqlquery);
+//	
+//				for (int j = 0; j < tableDataset.size(); j++)
+//				{
+//					String[] newClassified = {tableDataset.get(j)[0], tableDataset.get(j)[1], tableDataset.get(j)[2], tableDataset.get(j)[3]};
+//					DBUtil.post(conn, "INSERT INTO `cs_project_swqc`.`enrich_query` (`student_id`, `search_query`, `information`, `gpa`) VALUES (?,?,?,?);", newClassified);
+//				}
+//			}
+//			
+//		} catch (Exception e) {
+//			System.out.println(e);
+//		} finally {
+//			DBUtil.closeConnection(conn);
+//		}
+//		
+//	}
 	
 	public static void main(String[] args) throws Exception {
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-//			Enrichment bingSearch = new Enrichment("5ad4ae8a7635441fb2a6817f76904cf6", 0, 10);
-//			bingSearch.searchResults(conn);
-//			loadEnrichment();
-			temp();
+			Enrichment bingSearch = new Enrichment("5ad4ae8a7635441fb2a6817f76904cf6", 0, 10);
+			bingSearch.searchResults(conn);
+			loadEnrichment();
 		} catch(Exception e) {
 			System.out.println(e);
 		} finally {

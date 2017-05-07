@@ -10,9 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+import com.csvreader.CsvReader;
+
 
 /**
- * Database connection util class.
+ * Database connection utility class, in order to easy connect database and close connection.
  * 
  * @author Vikas Matcha, Shijian(Tim) Xu
  * @version 1.0
@@ -45,9 +47,11 @@ public class DBUtil {
     }
     
 /**
+ * Connect database by configuration file 'db.properties' setting.
  * 
+ * @return Connection
  * 
- */ 
+ */
     public static Connection getConnection() {
         Connection conn = null;
         try {
@@ -57,14 +61,29 @@ public class DBUtil {
             conn = DriverManager.getConnection(pros.getProperty("mysqlURL"),
                     pros.getProperty("mysqlUser"),pros.getProperty("mysqlPwd"));
              
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return conn;
     }
 
+/**
+ * Reading data from database.
+ * 
+ * @param conn
+ *            Connection object of current connection to database.
+ * @param statement
+ * 			  Basic SQL statement, reminds ? as input part.
+ * @param column
+ * 			  Requirement column of data table.
+ * @param query
+ * 			  Value which fill into ? in SQL statement.
+ * 
+ * @return ArrayList
+ * 
+ * @throws Exception
+ * 			  Throw connection error.
+ */
 	public static ArrayList<String[]> get(Connection conn, String statement, String[] column, String[] query) throws Exception// receives data from table
 	{	
 		try {
@@ -87,7 +106,20 @@ public class DBUtil {
 		}
 		return null;
 	}
-
+	
+/**
+ * Post statement to database.
+ * 
+ * @param conn
+ *            Connection object of current connection to database.
+ * @param statement
+ * 			  Basic SQL statement, reminds ? as input part.
+ * @param a
+ * 			  Value which fill into ? in SQL statement.
+ * 
+ * @throws Exception
+ * 			  Throw connection error.
+ */
 	public static void post(Connection conn, String statement, String[] a) throws Exception {// update table contents
 		try {
 			PreparedStatement ps = conn.prepareStatement(statement);
@@ -100,7 +132,13 @@ public class DBUtil {
 		}
 	}
 
-	
+/**
+ * Closing connection.
+ * 
+ * @param conn
+ *            Connection object of current connection to database.
+ * 
+ */
 	public static void closeConnection(Connection conn) {// update table contents
 		try {
 			conn.close();
